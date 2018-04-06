@@ -10,8 +10,8 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
-public class VehicleDaoImpl implements VehicleDao {
+@Component(value="BASIC")
+public class CrudeDBInteraction implements VehicleDao {
 
 	@Autowired
 	private DataSource dataSource;
