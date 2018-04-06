@@ -51,8 +51,10 @@ public class VehicleDaoImpl implements VehicleDao {
 			Vehicle vehicle = null;
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				vehicle = new Vehicle(rs.getString("VEHICLE_NO"), rs.getString("COLOR"), rs.getInt("WHEEL"),
-						rs.getInt("SEAT"));
+				vehicle = new Vehicle(rs.getString("VEHICLE_NO")
+						            , rs.getString("COLOR")
+						            , rs.getInt("WHEEL")
+						            , rs.getInt("SEAT"));
 			}
 			rs.close();
 			ps.close();

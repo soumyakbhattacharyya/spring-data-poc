@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import com.example.demo.db.sample.VehicleDao;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class LearningHibernateApplicationTests {
+	
 
 	@Autowired
 	private VehicleDao dao;
@@ -21,9 +24,15 @@ public class LearningHibernateApplicationTests {
 	}
 
 	@Test
-	public void testPersistence() {
+	public void testInsertion() {
 
-		dao.insert(new Vehicle("123", "red", 1, 1));
+		dao.insert(new Vehicle(UUID.randomUUID().toString().substring(1, 3), "red", 1, 1));
+	}
+
+	@Test
+	public void testFinder() {
+
+		dao.findByVehicleNo("123");
 	}
 
 }
