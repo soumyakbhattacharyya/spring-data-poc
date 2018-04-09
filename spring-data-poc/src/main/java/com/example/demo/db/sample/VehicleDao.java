@@ -9,4 +9,6 @@ public interface VehicleDao {
 	public void delete(Vehicle vehicle);
 
 	public Vehicle findByVehicleNo(String vehicleNo);
+
+	int countVehicle();
 }

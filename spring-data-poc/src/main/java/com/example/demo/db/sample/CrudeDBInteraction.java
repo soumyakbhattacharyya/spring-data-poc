@@ -83,4 +83,10 @@ public class CrudeDBInteraction implements VehicleDao {
 
 	}
 
+	@Override
+	public int countVehicle() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

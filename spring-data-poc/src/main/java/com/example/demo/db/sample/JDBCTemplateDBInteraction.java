@@ -8,15 +8,25 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Component;
 
 @Component(value = "JDBC")
 public class JDBCTemplateDBInteraction implements VehicleDao {
 
-	@Autowired
 	DataSource dataSource;
+	JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+		// as a best practice jdbcTemplate object is initialized inside setter method
+		// so that it happens after dataSource has been initialized
+
+		// jdbcTemplate is a thread-safe class
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
 
 	@Override
 	public void update(Vehicle vehicle) {
@@ -26,7 +36,6 @@ public class JDBCTemplateDBInteraction implements VehicleDao {
 
 	@Override
 	public void insert(final Vehicle vehicle) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		// option - 1 : in following implementation, prepared statement had to be
 		// created and parameterized
@@ -89,4 +98,26 @@ public class JDBCTemplateDBInteraction implements VehicleDao {
 		return null;
 	}
 
+	// example - 1:
+	@Override
+	public int countVehicle() {
+		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM VEHICLE", Integer.class);
+
+	}
+
+	// example - executing statement
+	
+	
+	
+	
+	// exmaple - updating database
+	// example - running query
+	// example - MappingSqlQuery
+	// exmaple - SimpleJdbcInsert
+	// example - SqlUpdate
+	// exmaple - SqlQuery
+	// example - NamedParameterJdbcTemplate
+	
+	
+	
 }

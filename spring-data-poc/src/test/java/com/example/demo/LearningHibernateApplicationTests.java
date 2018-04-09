@@ -15,7 +15,6 @@ import com.example.demo.db.sample.VehicleDao;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class LearningHibernateApplicationTests {
-	
 
 	@Autowired
 	@Qualifier("JDBC")
@@ -35,6 +34,7 @@ public class LearningHibernateApplicationTests {
 	public void testFinder() {
 
 		dao.findByVehicleNo("123");
+		System.out.println("number of vehicle is : " + dao.countVehicle());
 	}
 
 }
